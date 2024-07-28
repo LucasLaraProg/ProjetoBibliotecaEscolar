@@ -1,4 +1,4 @@
-package com.bibliotecaEscola.biblioteca.entity;
+package com.bibliotecaEscola.biblioteca.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class AlunoEntity {
+public class StudentEntity {
 
     @Column(nullable = false)
     @Id

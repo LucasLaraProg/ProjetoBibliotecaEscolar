@@ -1,8 +1,8 @@
-package com.bibliotecaEscola.biblioteca.controller;
+package com.bibliotecaEscola.biblioteca.controllers;
 
-import com.bibliotecaEscola.biblioteca.entity.AlunoEntity;
-import com.bibliotecaEscola.biblioteca.request.AlunoRequest;
-import com.bibliotecaEscola.biblioteca.service.AlunoService;
+import com.bibliotecaEscola.biblioteca.entities.StudentEntity;
+import com.bibliotecaEscola.biblioteca.requests.StudentRequest;
+import com.bibliotecaEscola.biblioteca.services.StudentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,27 +14,27 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/alunos")
 @Tag(name = "ALunos", description = "Endpoint para manipulação de alunos")
-public class AlunoController {
+public class StudentController {
     @Autowired
-    private AlunoService service;
+    private StudentService service;
 
     @GetMapping
-    public List<AlunoEntity> listarAlunos() {
+    public List<StudentEntity> listarAlunos() {
         return service.findAll();
     }
 
     @PostMapping("/{ra}")
-    public Optional<AlunoEntity>getAlunoByRa(@PathVariable long ra) {
+    public Optional<StudentEntity>getAlunoByRa(@PathVariable long ra) {
         return service.findByRa(ra);
     }
 
     @PostMapping
-    public AlunoEntity createAluno(@RequestBody AlunoEntity aluno) {
+    public StudentEntity createAluno(@RequestBody StudentEntity aluno) {
         return service.createAluno(aluno);
     }
 
     @PutMapping("/{ra}")
-    public AlunoEntity updateAluno(@PathVariable long ra, @RequestBody AlunoRequest payload) {
+    public StudentEntity updateAluno(@PathVariable long ra, @RequestBody StudentRequest payload) {
         return service.updateAluno(ra,payload);
     }
 

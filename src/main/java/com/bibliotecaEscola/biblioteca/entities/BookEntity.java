@@ -1,4 +1,4 @@
-package com.bibliotecaEscola.biblioteca.entity;
+package com.bibliotecaEscola.biblioteca.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,26 +12,26 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class LivroEntity {
+public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
     @Column(nullable = false)
-    private String titulo;
+    private String title;
 
     @Column(nullable = false)
-    private String autor;
+    private String author;
 
     @Column(nullable = false)
-    private int quantidade;
+    private int amount;
 
-    private int ano;
-    public LivroEntity(String titulo, String autor, int ano, int quantidade) {
-        this.titulo = titulo;
-        this.autor = autor;
-        this.ano = ano;
-        this.quantidade = quantidade;
+    private int year;
+    public BookEntity(String title, String author, int year, int amount) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.amount = amount;
     }
 
 

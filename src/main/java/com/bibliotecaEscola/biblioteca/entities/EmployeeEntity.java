@@ -1,4 +1,4 @@
-package com.bibliotecaEscola.biblioteca.entity;
+package com.bibliotecaEscola.biblioteca.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class FuncionarioEntity {
+public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -24,7 +24,7 @@ public class FuncionarioEntity {
     @Column(nullable = false)
     private String cargo;
 
-    public FuncionarioEntity(String nome, String cargo) {
+    public EmployeeEntity(String nome, String cargo) {
         this.nome = nome;
         this.cargo = cargo;
     }

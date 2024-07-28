@@ -1,11 +1,10 @@
-package com.bibliotecaEscola.biblioteca.entity;
+package com.bibliotecaEscola.biblioteca.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.ManyToAny;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RegistrosAluguelEntity {
+public class BookRentalRecordsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -33,17 +32,17 @@ public class RegistrosAluguelEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ra_aluno", referencedColumnName ="ra", nullable = false)
-    private AlunoEntity raAluno;
+    private StudentEntity raAluno;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_livro", referencedColumnName ="id", nullable = false)
-    private LivroEntity idlivro;
+    private BookEntity idlivro;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_funcionario", referencedColumnName ="id", nullable = false)
-    private FuncionarioEntity idFuncionario;
+    private EmployeeEntity idFuncionario;
 
-   public RegistrosAluguelEntity(LocalDateTime dataAluguel,LocalDateTime dataParaEntrega,AlunoEntity ra,LivroEntity idLivro,FuncionarioEntity idFuncionario){
+   public BookRentalRecordsEntity(LocalDateTime dataAluguel, LocalDateTime dataParaEntrega, StudentEntity ra, BookEntity idLivro, EmployeeEntity idFuncionario){
        this.dataAluguel = dataAluguel;
        this.dataParaEntrega = dataParaEntrega;
        this.raAluno = ra;

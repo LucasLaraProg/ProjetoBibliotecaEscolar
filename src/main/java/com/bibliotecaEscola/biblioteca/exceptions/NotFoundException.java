@@ -11,9 +11,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 
-public class BookNotFoundException extends ResponseEntityExceptionHandler {
+public class NotFoundException extends ResponseEntityExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity bookNotFoundException(Exception e){
+    public ResponseEntity NotFoundException(Exception e){
         return new ResponseEntity("Error: "+e.getMessage(), HttpStatus.BAD_REQUEST);
 }
 }
