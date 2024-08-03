@@ -13,35 +13,36 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/registrosAluguel")
-@Tag(name = "Registros De Aluguel", description = "Endpoint para manipulação de registros de aluguéis de livros")
+@RequestMapping("/bookrentalrecords")
+@Tag(name = "Book Rental Records", description = "Endpoint for Managing Book rental records")
 public class BookRentalRecordsController {
     @Autowired
     private BookRentalRecordsService service;
 
     @GetMapping
-    public List<BookRentalRecordsEntity> listarRegistros() {
+    public List<BookRentalRecordsEntity> showAllRecords() {
         return service.findAll();
     }
 
-    @PostMapping("/{ra}/{idLivro}/{idFuncionario}")
+    @PostMapping("/{ra}/{idBook}/{idEmplyoee}")
     @Operation(description = "Save book rental records by Ra Student,Id book and Id Employee")
-    public BookRentalRecordsEntity createRegistro(@PathVariable long ra, UUID idLivro, UUID idFuncionario, @RequestBody BookRentalRecordsRequest payload) {
-        return service.createRegistroAluguel(payload, ra, idLivro, idFuncionario);
+
+    public BookRentalRecordsEntity createRecord(@PathVariable long ra, UUID idBook, UUID idEmplyoee, @RequestBody BookRentalRecordsRequest payload) {
+        return service.createRecord(payload, ra, idBook, idEmplyoee);
     }
 
     @PostMapping("/{id}")
-    public Optional<BookRentalRecordsEntity> getRegistroById(@PathVariable UUID id) {
+    public Optional<BookRentalRecordsEntity> getRecordById(@PathVariable UUID id) {
         return service.findById(id);
     }
 
     @PutMapping("/{id}")
-    public BookRentalRecordsEntity updateRegistro(@PathVariable UUID id, @RequestBody BookRentalRecordsRequest payload) {
-        return service.updateRegistroAluguel(id, payload);
+    public BookRentalRecordsEntity updateRecord(@PathVariable UUID id, @RequestBody BookRentalRecordsRequest payload) {
+        return service.updateRecord(id, payload);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteRegistro(@PathVariable UUID id) {
-        service.deleteAluguel(id);
+    public void deleteRecord(@PathVariable UUID id) {
+        service.deleteRecord(id);
     }
 }

@@ -20,10 +20,10 @@ public class BookRentalRecordsEntity {
     private UUID id;
 
     @Column(nullable = false)
-    private LocalDateTime dataAluguel;
+    private LocalDateTime recordDate;
 
     @Column(nullable = false)
-    private LocalDateTime dataParaEntrega;
+    private LocalDateTime deliveryDate;
 
 
     private LocalDateTime dataDeEntrega;
@@ -31,23 +31,23 @@ public class BookRentalRecordsEntity {
     private boolean devolvido;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ra_aluno", referencedColumnName ="ra", nullable = false)
-    private StudentEntity raAluno;
+    @JoinColumn(name = "ra_student", referencedColumnName = "ra", nullable = false)
+    private StudentEntity raStudent;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_livro", referencedColumnName ="id", nullable = false)
-    private BookEntity idlivro;
+    @JoinColumn(name = "id_book", referencedColumnName = "id", nullable = false)
+    private BookEntity idBook;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_funcionario", referencedColumnName ="id", nullable = false)
-    private EmployeeEntity idFuncionario;
+    @JoinColumn(name = "id_emplyoee", referencedColumnName = "id", nullable = false)
+    private EmployeeEntity idEmplyoee;
 
-   public BookRentalRecordsEntity(LocalDateTime dataAluguel, LocalDateTime dataParaEntrega, StudentEntity ra, BookEntity idLivro, EmployeeEntity idFuncionario){
-       this.dataAluguel = dataAluguel;
-       this.dataParaEntrega = dataParaEntrega;
-       this.raAluno = ra;
-       this.idlivro=idLivro;
-       this.idFuncionario=idFuncionario;
+    public BookRentalRecordsEntity(LocalDateTime recordDate, LocalDateTime deliveryDate, StudentEntity ra, BookEntity idBook, EmployeeEntity idEmplyooe) {
+        this.recordDate = recordDate;
+        this.deliveryDate = deliveryDate;
+        this.raStudent = ra;
+        this.idBook = idBook;
+        this.idEmplyoee = idEmplyooe;
 
     }
 

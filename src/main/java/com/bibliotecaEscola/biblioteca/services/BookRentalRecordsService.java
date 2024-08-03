@@ -22,44 +22,48 @@ public class BookRentalRecordsService {
     private BookRentalRecordsRepository repository;
 
     @Autowired
-    private StudentRepository alunoRepository;
+    private StudentRepository studentRepository;
 
     @Autowired
-    private EmployeeRepository funcionarioRepository;
+    private EmployeeRepository emplyoeeRepository;
 
     @Autowired
-    private BookRepository livroRepository;
+    private BookRepository bookRepository;
 
     public List<BookRentalRecordsEntity> findAll(){
         return repository.findAll();
     }
+
     public Optional<BookRentalRecordsEntity> findById(UUID id){
         return repository.findById(id);
     }
-    public BookRentalRecordsEntity createRegistroAluguel(BookRentalRecordsRequest payload, long ra, UUID idLivro, UUID idFuncionario){
+
+    public BookRentalRecordsEntity createRecord(BookRentalRecordsRequest payload, long ra, UUID idBook, UUID idEmplyoee){
         LocalDateTime dateNow = LocalDateTime.now();
-        Optional<BookEntity> livro= Optional.ofNullable(livroRepository.findById(idLivro).orElseThrow(() -> new RuntimeException("Book Not Found!!")));
-        Optional<EmployeeEntity> funcionario= Optional.ofNullable(funcionarioRepository.findById(idFuncionario).orElseThrow(() -> new RuntimeException("Employee Not Found!!")));
-        Optional<StudentEntity>  aluno= Optional.ofNullable(alunoRepository.findById(ra).orElseThrow(() -> new RuntimeException("Student Not Found!!")));
-        if (livro.isPresent() && funcionario.isPresent() && aluno.isPresent()){
-            BookEntity rawLivro=livro.get();
-            EmployeeEntity rawFuncionario=funcionario.get();
-            StudentEntity rawAluno=aluno.get();
-            BookRentalRecordsEntity newRegistroAluguel = new BookRentalRecordsEntity(dateNow,payload.dataParaEntrega(),rawAluno,rawLivro,rawFuncionario);
-            return repository.save(newRegistroAluguel);
+        Optional<BookEntity> book= Optional.ofNullable(bookRepository.findById(idBook).orElseThrow(() -> new RuntimeException("Book Not Found!!")));
+        Optional<EmployeeEntity> emplyoee= Optional.ofNullable(emplyoeeRepository.findById(idEmplyoee).orElseThrow(() -> new RuntimeException("Employee Not Found!!")));
+        Optional<StudentEntity>  student= Optional.ofNullable(studentRepository.findById(ra).orElseThrow(() -> new RuntimeException("Student Not Found!!")));
+        if (book.isPresent() && emplyoee.isPresent() && student.isPresent()){
+            BookEntity rawBook=book.get();
+            EmployeeEntity rawEmplyoee=emplyoee.get();
+            StudentEntity rawStudent=student.get();
+            BookRentalRecordsEntity newRecord = new BookRentalRecordsEntity(dateNow,payload.dataParaEntrega(),rawStudent,rawBook,rawEmplyoee);
+            return repository.save(newRecord);
         }
 
         return null;
     }
-    public BookRentalRecordsEntity updateRegistroAluguel(UUID id, BookRentalRecordsRequest payload) {
-        BookRentalRecordsEntity registroToUpadte = repository.findById(id).orElseThrow(()-> new RuntimeException("Book rental records Not Found!!"));
-        registroToUpadte.setDataParaEntrega(payload.dataParaEntrega());
-        registroToUpadte.setDataDeEntrega(payload.dataDeEntrega());
-        return repository.save(registroToUpadte);
+
+    public BookRentalRecordsEntity updateRecord(UUID id, BookRentalRecordsRequest payload) {
+        BookRentalRecordsEntity recordToUpadte = repository.findById(id).orElseThrow(()-> new RuntimeException("Book rental records Not Found!!"));
+        recordToUpadte.setRecordDate(payload.dataParaEntrega());
+        recordToUpadte.setDataDeEntrega(payload.dataDeEntrega());
+        return repository.save(recordToUpadte);
     }
-    public void deleteAluguel(UUID id) {
-        BookRentalRecordsEntity registroToDelete = repository.findById(id).orElseThrow(()-> new RuntimeException("Book rental records Not Found!!"));
-        repository.delete(registroToDelete);
+
+    public void deleteRecord(UUID id) {
+        BookRentalRecordsEntity recordToDelete = repository.findById(id).orElseThrow(()-> new RuntimeException("Book rental records Not Found!!"));
+        repository.delete(recordToDelete);
 
     }
 
