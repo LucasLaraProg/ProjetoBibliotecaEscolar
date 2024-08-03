@@ -14,33 +14,33 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/funcionarios")
-@Tag(name="Funcionarios", description = "Endpoint para manipulação de funcionarios")
+@RequestMapping("/emplyoees")
+@Tag(name="Employees", description = "Endpoint for Managing Emplyoees")
 public class EmplyoeeController {
     @Autowired
     private EmployeeService service;
 
     @GetMapping
-    public List<EmployeeEntity> listarFuncionarios() {
+    public List<EmployeeEntity> showAllEmployees() {
         return service.findAll();
     }
 
     @PostMapping
-    public EmployeeEntity createFuncionario(@RequestBody EmployeeRequest payload) {
-        return service.createFuncionario(payload);
+    public EmployeeEntity createEmplyoee(@RequestBody EmployeeRequest payload) {
+        return service.createEmplyoee(payload);
     }
 
     @PostMapping("/{id}")
-    public Optional<EmployeeEntity> getFuncionarioById(@PathVariable UUID id) {
+    public Optional<EmployeeEntity> getEmplyoeeById(@PathVariable UUID id) {
         return service.findById(id);
     }
 
     @PutMapping("/{id}")
-    public EmployeeEntity updateFuncionario(@PathVariable UUID id, @RequestBody EmployeeRequest payload) {
-        return service.updateFuncionario(id, payload);
+    public EmployeeEntity updateEmplyoee(@PathVariable UUID id, @RequestBody EmployeeRequest payload) {
+        return service.updateEmplyoee(id, payload);
     }
     @DeleteMapping("{id}")
-    public void deleteFuncionario(@PathVariable UUID id) {
-        service.deleteFuncionario(id);
+    public void deleteEmplyoee(@PathVariable UUID id) {
+        service.deleteEmplyoee(id);
     }
 }

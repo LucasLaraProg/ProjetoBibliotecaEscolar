@@ -20,9 +20,9 @@ public class StudentEntity {
     private long ra;
 
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
-    private String serie;
+    private String schoolGrade;
 
 }

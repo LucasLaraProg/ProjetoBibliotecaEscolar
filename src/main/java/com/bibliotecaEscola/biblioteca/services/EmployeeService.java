@@ -22,19 +22,20 @@ public class EmployeeService {
         return repository.findById(id);
     }
 
-    public EmployeeEntity createFuncionario(EmployeeRequest payload) {
-        EmployeeEntity newFuncionario = new EmployeeEntity(payload.nome(), payload.cargo());
-        return repository.save(newFuncionario);
+    public EmployeeEntity createEmplyoee(EmployeeRequest payload) {
+        EmployeeEntity newEmplyoee = new EmployeeEntity(payload.name(), payload.office());
+        return repository.save(newEmplyoee);
     }
-    public EmployeeEntity updateFuncionario(UUID id, EmployeeRequest payload) {
-        EmployeeEntity funcionarioToUpdate = repository.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found!!"));
-        funcionarioToUpdate.setNome(payload.nome());
-        funcionarioToUpdate.setCargo(payload.cargo());
-        return repository.save(funcionarioToUpdate);
+
+    public EmployeeEntity updateEmplyoee(UUID id, EmployeeRequest payload) {
+        EmployeeEntity emplyoeeToUpdate = repository.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found!!"));
+        emplyoeeToUpdate.setNome(payload.name());
+        emplyoeeToUpdate.setCargo(payload.office());
+        return repository.save(emplyoeeToUpdate);
     }
-    public void deleteFuncionario(UUID id) {
-        EmployeeEntity funcionarioToDelete = repository.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found!!"));
-        repository.delete(funcionarioToDelete);
+    public void deleteEmplyoee(UUID id) {
+        EmployeeEntity emplyoeeToDelete = repository.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found!!"));
+        repository.delete(emplyoeeToDelete);
 
     }
 

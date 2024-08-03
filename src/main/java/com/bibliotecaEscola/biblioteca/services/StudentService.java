@@ -21,18 +21,20 @@ public class StudentService {
         return repository.findById(ra);
     }
 
-    public StudentEntity createAluno(StudentEntity aluno) {
-       return repository.save(aluno);
+    public StudentEntity createStudent(StudentEntity student) {
+       return repository.save(student);
     }
-    public StudentEntity updateAluno(long ra, StudentRequest aluno) {
-        StudentEntity alunoToUpdate = repository.findById(ra).orElseThrow(()-> new RuntimeException("Student Not Found!!"));
-        alunoToUpdate.setNome(aluno.nome());
-        alunoToUpdate.setSerie(aluno.serie());
-        return repository.save(alunoToUpdate);
+
+    public StudentEntity updateStudent(long ra, StudentRequest student) {
+        StudentEntity studentToUpdate = repository.findById(ra).orElseThrow(()-> new RuntimeException("Student Not Found!!"));
+        studentToUpdate.setName(student.name());
+        studentToUpdate.setSchoolGrade(student.schoolGrade());
+        return repository.save(studentToUpdate);
     }
-    public void deleteAluno(long ra) {
-        StudentEntity alunoToDelete = repository.findById(ra).orElseThrow(()-> new RuntimeException("Student Not Found!!"));
-        repository.delete(alunoToDelete);
+
+    public void deleteStudent(long ra) {
+        StudentEntity studentToDelete = repository.findById(ra).orElseThrow(()-> new RuntimeException("Student Not Found!!"));
+        repository.delete(studentToDelete);
 
     }
 }
