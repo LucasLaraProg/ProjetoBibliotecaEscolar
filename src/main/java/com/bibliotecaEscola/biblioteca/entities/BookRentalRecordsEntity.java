@@ -30,15 +30,15 @@ public class BookRentalRecordsEntity {
     private LocalDateTime dataDeEntrega;
 
     private boolean devolvido;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ra_student", referencedColumnName = "ra", nullable = false)
     private StudentEntity raStudent;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_book", referencedColumnName = "id", nullable = false)
     private BookEntity idBook;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_emplyoee", referencedColumnName = "id", nullable = false)
     private EmployeeEntity idEmplyoee;
 
