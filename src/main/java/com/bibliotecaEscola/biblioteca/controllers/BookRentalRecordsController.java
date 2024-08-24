@@ -13,7 +13,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/bookrentalrecords")
+@RequestMapping("/bookRentalRecords")
 @Tag(name = "Book Rental Records", description = "Endpoint for Managing Book rental records")
 public class BookRentalRecordsController {
     @Autowired

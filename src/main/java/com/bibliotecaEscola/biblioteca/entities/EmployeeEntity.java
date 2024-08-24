@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.UUID;
 
 @Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -19,14 +20,14 @@ public class EmployeeEntity {
     private UUID id;
 
     @Column(nullable = false)
-    private String nome;
+    private String name;
 
     @Column(nullable = false)
-    private String cargo;
+    private String position;
 
-    public EmployeeEntity(String nome, String cargo) {
-        this.nome = nome;
-        this.cargo = cargo;
+    public EmployeeEntity(String name, String position) {
+        this.name = name;
+        this.position = position;
     }
 
 }

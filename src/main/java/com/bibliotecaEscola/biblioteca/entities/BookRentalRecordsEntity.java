@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -29,20 +30,19 @@ public class BookRentalRecordsEntity {
     private LocalDateTime dataDeEntrega;
 
     private boolean devolvido;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ra_student", referencedColumnName = "ra", nullable = false)
     private StudentEntity raStudent;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_book", referencedColumnName = "id", nullable = false)
     private BookEntity idBook;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_emplyoee", referencedColumnName = "id", nullable = false)
     private EmployeeEntity idEmplyoee;
 
-    public BookRentalRecordsEntity(LocalDateTime recordDate, LocalDateTime deliveryDate, StudentEntity ra, BookEntity idBook, EmployeeEntity idEmplyooe) {
+    public BookRentalRecordsEntity(LocalDateTime recordDate, LocalDateTime deliveryDate,  StudentEntity ra, BookEntity idBook, EmployeeEntity idEmplyooe) {
         this.recordDate = recordDate;
         this.deliveryDate = deliveryDate;
         this.raStudent = ra;

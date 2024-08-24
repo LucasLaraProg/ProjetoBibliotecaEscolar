@@ -23,14 +23,14 @@ public class EmployeeService {
     }
 
     public EmployeeEntity createEmplyoee(EmployeeRequest payload) {
-        EmployeeEntity newEmplyoee = new EmployeeEntity(payload.name(), payload.office());
+        EmployeeEntity newEmplyoee = new EmployeeEntity(payload.name(), payload.position());
         return repository.save(newEmplyoee);
     }
 
     public EmployeeEntity updateEmplyoee(UUID id, EmployeeRequest payload) {
         EmployeeEntity emplyoeeToUpdate = repository.findById(id).orElseThrow(()-> new RuntimeException("Employee Not Found!!"));
-        emplyoeeToUpdate.setNome(payload.name());
-        emplyoeeToUpdate.setCargo(payload.office());
+        emplyoeeToUpdate.setName(payload.name());
+        emplyoeeToUpdate.setPosition(payload.position());
         return repository.save(emplyoeeToUpdate);
     }
     public void deleteEmplyoee(UUID id) {

@@ -38,16 +38,16 @@ public class BookRentalRecordsService {
         return repository.findById(id);
     }
 
-    public BookRentalRecordsEntity createRecord(BookRentalRecordsRequest payload, long ra, UUID idBook, UUID idEmplyoee){
+    public BookRentalRecordsEntity createRecord(BookRentalRecordsRequest payload, long ra, UUID idBook, UUID idEmployee){
         LocalDateTime dateNow = LocalDateTime.now();
         Optional<BookEntity> book= Optional.ofNullable(bookRepository.findById(idBook).orElseThrow(() -> new RuntimeException("Book Not Found!!")));
-        Optional<EmployeeEntity> emplyoee= Optional.ofNullable(emplyoeeRepository.findById(idEmplyoee).orElseThrow(() -> new RuntimeException("Employee Not Found!!")));
+        Optional<EmployeeEntity> employee= Optional.ofNullable(emplyoeeRepository.findById(idEmployee).orElseThrow(() -> new RuntimeException("Employee Not Found!!")));
         Optional<StudentEntity>  student= Optional.ofNullable(studentRepository.findById(ra).orElseThrow(() -> new RuntimeException("Student Not Found!!")));
-        if (book.isPresent() && emplyoee.isPresent() && student.isPresent()){
+        if (book.isPresent() && employee.isPresent() && student.isPresent()){
             BookEntity rawBook=book.get();
-            EmployeeEntity rawEmplyoee=emplyoee.get();
+            EmployeeEntity rawEmployee=employee.get();
             StudentEntity rawStudent=student.get();
-            BookRentalRecordsEntity newRecord = new BookRentalRecordsEntity(dateNow,payload.dataParaEntrega(),rawStudent,rawBook,rawEmplyoee);
+            BookRentalRecordsEntity newRecord = new BookRentalRecordsEntity(dateNow,payload.dataParaEntrega(),rawStudent,rawBook,rawEmployee);
             return repository.save(newRecord);
         }
 

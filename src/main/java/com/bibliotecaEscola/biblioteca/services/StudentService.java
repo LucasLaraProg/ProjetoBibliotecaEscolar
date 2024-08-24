@@ -22,7 +22,15 @@ public class StudentService {
     }
 
     public StudentEntity createStudent(StudentEntity student) {
-       return repository.save(student);
+        try {
+            if (repository.findById(student.getRa()).isPresent()) {
+                throw new RuntimeException("Student already exists");
+            } else {
+                return repository.save(student);
+            }
+        } finally {
+
+        }
     }
 
     public StudentEntity updateStudent(long ra, StudentRequest student) {
